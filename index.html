@@ -277,22 +277,17 @@
 			<script src="assets/js/main.js"></script>
 			<script type = "text/javascript" src = "assets/js/modernizr.js"></script>
 			<script>
-				self.addEventListener('install', function(event) {
-				  console.log('install');
-				});
 
-				self.addEventListener('activate', function(event) {
-				  console.log('activate');
-				});
+      if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('serviceworker.js').then(function(registration) {
 
-				self.addEventListener('fetch', function(event) {
-				  if (event.request.url.indexOf('material.teal-red.min.css') !== -1) {
-					console.log('Fetch request for:', event.request.url);
-					event.respondWith(new Response('header {background: green url("")!important}', {
-					  headers: { 'Content-Type': 'text/css' }
-					}));
-				  }
-				});
+    console.log('Service worker registered successfully');
+  }).catch(function(err) {
+    console.log('Service worker registration failed: ', err);
+  });
+}
+
+      
 			</script>
 
 	</body>
