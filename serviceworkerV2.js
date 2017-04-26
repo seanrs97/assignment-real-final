@@ -46,12 +46,7 @@ var CACHED_URLS = [
   BASE_PATH + 'images/universityImage-1x.jpg',
   BASE_PATH + 'images/universityImage-2x.jpg',
   BASE_PATH + 'images/universityImage-3x.jpg',
-  BASE_PATH + 'assets/css/images/overlay.png',
-  BASE_PATH + 'assets/css/images/shadow.png',
-  BASE_PATH + 'assets/css/font-awesome.min.css',
-  BASE_PATH + 'assets/css/ie8.css',
-  BASE_PATH + 'assets/css/main.css',
-  BASE_PATH + 'assets/css/normalize.css',
+  
   BASE_PATH + 'assets/fonts/FontAwesome.otf',
   BASE_PATH + 'assets/fonts/fontawesome-webfont.eot',
   BASE_PATH + 'assets/fonts/fontawesome-webfont.svg',
@@ -82,8 +77,7 @@ var CACHED_URLS = [
   BASE_PATH + 'min-style.css',
   BASE_PATH + 'offlinemap.jpg',
   BASE_PATH + 'events.json',
-  BASE_PATH + 'scripts.js',
-  BASE_PATH + 'scriptsV2.js',
+  BASE_PATH + 'scripts.js'
   
   
   // Stylesheets and fonts
