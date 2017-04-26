@@ -6,35 +6,7 @@ var newsAPIJSON = "https://newsapi.org/v1/articles?source=bbc-news&apiKey=a0a4a3
 var CACHED_URLS = [
   // Our HTML
   BASE_PATH + 'index.html',
-  BASE_PATH + 'staffs-uni.html',
-  BASE_PATH + 'sign-up.html',
-  BASE_PATH + 'dino.png',
-  BASE_PATH + 'mystyles.css',
-  BASE_PATH + 'styles.css',
-  BASE_PATH + 'offline.html',
-  BASE_PATH + 'images/favicon/android-icon-36x36.png',
-  BASE_PATH + 'images/favicon/android-icon-48x48.png',
-  BASE_PATH + 'images/favicon/android-icon-72x72.png',
-  BASE_PATH + 'images/favicon/android-icon-96x96.png',
-  BASE_PATH + 'images/favicon/android-icon-144x144.png',
-  BASE_PATH + 'images/favicon/android-icon-192x192.png',
-  BASE_PATH + 'images/favicon/favicon-16x16.png',
-  BASE_PATH + 'images/favicon/favicon-32x32.png',
-  BASE_PATH + 'images/favicon/favicon-96x96.png',
-  BASE_PATH + 'images/favicon/ic_launcher-1x.png',
-  BASE_PATH + 'images/favicon/ic_launcher-2x.png',
-  BASE_PATH + 'images/favicon/ic_launcher-3x.png',
-  BASE_PATH + 'images/favicon/ic_launcher-4x.png',
-  BASE_PATH + 'images/favicon/ic_launcher-5x.png',
-  BASE_PATH + 'images/favicon/manifest.json',
-  BASE_PATH + 'images/activities-image.jpg',
-  BASE_PATH + 'images/banner.jpg',
- 
-  BASE_PATH + 'event-default.png',
-  BASE_PATH + 'min-style.css',
-  BASE_PATH + 'offlinemap.jpg',
-  BASE_PATH + 'events.json',
-  BASE_PATH + 'scripts.js'
+
   
   
   // Stylesheets and fonts
