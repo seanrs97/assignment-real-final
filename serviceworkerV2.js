@@ -216,7 +216,7 @@ self.addEventListener('activate', function(event) {
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
-          if (cacheName.startsWith('gih-cache') && CACHE_NAME !== cacheName) {
+          if (cacheName.startsWith('gih-cache-v6') && CACHE_NAME !== cacheName) {
             return caches.delete(cacheName);
           }
         })
