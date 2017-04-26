@@ -27,7 +27,7 @@ fetch("events.json")
                 </div>
             </div>`;
         }).join("\n");
-        const eventsContainer = document.getElementById('events');
+        const eventsContainer = document.getElementById('page-wrapper');
         eventsContainer.innerHTML = eventsHTML;
     });
 	
