@@ -8,6 +8,7 @@ var CACHED_URLS = [
   BASE_PATH + 'index.html',
   BASE_PATH + 'staffs-uni.html',
   BASE_PATH + 'sign-up.html',
+  
   BASE_PATH + 'mystyles.css',
   BASE_PATH + 'styles.css',
   BASE_PATH + 'offline.html',
@@ -25,6 +26,7 @@ var CACHED_URLS = [
   BASE_PATH + 'images/favicon/ic_launcher-3x.png',
   BASE_PATH + 'images/favicon/ic_launcher-4x.png',
   BASE_PATH + 'images/favicon/ic_launcher-5x.png',
+  
   BASE_PATH + 'images/favicon/manifest.json',
   BASE_PATH + 'images/activities-image.jpg',
   BASE_PATH + 'images/banner.jpg',
@@ -79,7 +81,7 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   var requestURL = new URL(event.request.url);
   // Handle requests for index.html
-  if (requestURL.pathname === BASE_PATH + 'first.html') {
+  if (requestURL.pathname === BASE_PATH + 'staffs-uni.html') {
     event.respondWith(
       caches.open(CACHE_NAME).then(function(cache) {
         return cache.match('staffs-uni.html').then(function(cachedResponse) {
@@ -190,7 +192,7 @@ self.addEventListener('activate', function(event) {
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
-          if (cacheName.startsWith('gih-cache-v6') && CACHE_NAME !== cacheName) {
+          if (cacheName.startsWith('gih-cache') && CACHE_NAME !== cacheName) {
             return caches.delete(cacheName);
           }
         })
