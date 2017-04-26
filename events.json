@@ -1,14 +1,50 @@
 [
+    /*{
+        "picture": "eventsimages/example-work01.jpg",
+        "heading": "Blog template",
+        "text": "Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.",
+        "link": "http://google.com/?q=Blog template"
+    },
+    {
+        "picture": "eventsimages/example-work07.jpg",
+        "heading": "Sunt nulla",
+        "text": "Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.",
+        "link": "http://google.com/?q=Sunt nulla"
+    },
+    {
+        "picture": "eventsimages/example-work02.jpg",
+        "heading": "Android.com website",
+        "text": "Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.",
+        "link": "http://google.com/?q=Android.com website"
+    },
+    {
+        "picture": "eventsimages/example-work03.jpg",
+        "heading": "Dashboard template",
+        "text": "Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.",
+        "link": "http://google.com/?q=Dashboard template"
+    },
+    {
+        "picture": "eventsimages/example-work04.jpg",
+        "heading": "Text-heavy website",
+        "text": "Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.",
+        "link": "http://google.com/?q=Text-heavy website"
+    },
+    {
+        "picture": "eventsimages/example-work08.jpg",
+        "heading": "Ex officia laborum",
+        "text": "Enim labore aliqua consequat ut quis ad occaecat aliquip incididunt. Sunt nulla eu enim irure enim nostrud aliqua consectetur ad consectetur sunt ullamco officia. Ex officia laborum et consequat duis.",
+        "link": "http://google.com/?q=Ex officia laborum"
+    }*/
 	{
 		"picture": "images/clubs-image.jpg",
 		"heading": "Join a Club or Society",
 		"text": "Joining a club or society with gith you a great oppurtunity to do something you enjoy with people you have probably never met before. Staffs Uni offers many clubs and societies for all different kinds of people."
-	}
+	},
 	{
 		"picture": "images/activities-image.jpg",
 		"heading": Get involved with Activities",
 		"text": "Staffs University hosts a whole bunch of activies throughout the year that pretty much anyone can partake in. It will give you the oppurtunity to do something fun."
-	}
+	},
 	{
 		"picture": "images/party-image.jpg",
 		"heading": "Party",
