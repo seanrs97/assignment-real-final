@@ -1,5 +1,5 @@
 var TEMP_IMAGE_CACHE_NAME = 'temp-cache-v7';
-var BASE_PATH = '/assignment/';
+var BASE_PATH = '/assignment-real-final/';
 var CACHE_NAME = 'gih-cache-v6';
 var newsAPIJSON = "https://newsapi.org/v1/articles?source=bbc-news&apiKey=a0a4a38847b64cf1b96a92066e7933af";
 
