@@ -178,7 +178,7 @@
 				</div>
 
 			<!-- Highlights -->
-				<div class="wrapper style3" id = "socialLife">
+				<div class="wrapper style3">
 					<div class="title">Social Life</div>
 					<div id="highlights" class="container">
 						<header class="style1">
@@ -276,21 +276,24 @@
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 			<script type = "text/javascript" src = "assets/js/modernizr.js"></script>
-			<!--<script src = "assets/js/material.js"></script>-->
-			<!--<script src = "scripts.js"></script>-->
 			<script>
+				self.addEventListener('install', function(event) {
+				  console.log('install');
+				});
 
-				 if ('serviceWorker' in navigator) {
-					navigator.serviceWorker.register('serviceworkerV2.js').then(function(registration) {
+				self.addEventListener('activate', function(event) {
+				  console.log('activate');
+				});
 
-					console.log('Service worker registered successfully');
-				  }).catch(function(err) {
-					console.log('Service worker registration failed: ', err);
-				  });
-				} 
-
-      
-			</script> 
+				self.addEventListener('fetch', function(event) {
+				  if (event.request.url.indexOf('material.teal-red.min.css') !== -1) {
+					console.log('Fetch request for:', event.request.url);
+					event.respondWith(new Response('header {background: green url("")!important}', {
+					  headers: { 'Content-Type': 'text/css' }
+					}));
+				  }
+				});
+			</script>
 
 	</body>
 </html>
