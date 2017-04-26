@@ -31,7 +31,7 @@ fetch("events.json")
         eventsContainer.innerHTML = eventsHTML;
     });
 	
-	const askJackForm = document.getElementById("askJackForm");
+/*	const askJackForm = document.getElementById("askJackForm");
 if(askJackForm){
     const askJackFormSubmit = e => {
         e.preventDefault();
@@ -57,4 +57,4 @@ if(askJackForm){
             });
     };
     askJackForm.addEventListener('submit', askJackFormSubmit, false);
-}
+}*/
