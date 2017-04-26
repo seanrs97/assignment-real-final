@@ -27,7 +27,7 @@ fetch("events.json")
                 </div>
             </div>`;
         }).join("\n");
-        const eventsContainer = document.getElementById('header-wrapper');
+        const eventsContainer = document.getElementById('socialLife');
         eventsContainer.innerHTML = eventsHTML;
     });
 	
