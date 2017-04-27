@@ -321,93 +321,19 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-  var requestURL = new URL(event.request.url);
-  // Handle requests for index.html
-  if (requestURL.pathname === BASE_PATH + 'index.html') { // THIS
-    event.respondWith(
-      caches.open(CACHE_NAME).then(function(cache) {
-        return cache.match('index.html').then(function(cachedResponse) {
-          var fetchPromise = fetch('index.html').then(function(networkResponse) {
-            cache.put('index.html', networkResponse.clone());
-            return networkResponse;
-          });
-          return cachedResponse || fetchPromise;
-        });
-      })
-    );
-	} else if (requestURL.pathname === BASE_PATH + 'staffs-uni.html') { // THIS
-    event.respondWith(
-      caches.open(CACHE_NAME).then(function(cache) {
-        return cache.match('staffs-uni.html').then(function(cachedResponse) {
-          var fetchPromise = fetch('staffs-uni.html').then(function(networkResponse) {
-            cache.put('staffs-uni.html', networkResponse.clone());
-            return networkResponse;
-          });
-          return cachedResponse || fetchPromise;
-        });
-      })
-    );
- // Handle requests for Google Maps JavaScript API file
-  } else if (requestURL.href === googleMapsAPIJS) { // ALL GOOD
-    event.respondWith(
-      fetch(
-        googleMapsAPIJS+'&'+Date.now(),
-        { mode: 'no-cors', cache: 'no-store' }
-      ).catch(function() {
-        return caches.match('offline-map.js');
-      })
-    );
-	// Handle requests for events JSON file
-  } else if (requestURL.pathname === BASE_PATH + 'events.json') { // ALL GOOD
-    event.respondWith(
-      caches.open(CACHE_NAME).then(function(cache) {
-        return fetch(event.request).then(function(networkResponse) {
-          cache.put(event.request, networkResponse.clone());
-          return networkResponse;
-        }).catch(function() {
-          return caches.match(event.request);
-        });
-      })
-    );
-  } else if (requestURL.href === newsAPIJSON) { // ALL GOOD
-    event.respondWith(
-      caches.open(CACHE_NAME).then(function(cache) {
-        return fetch(event.request).then(function(networkResponse) {
-          cache.put(event.request, networkResponse.clone());
-          caches.delete(TEMP_IMAGE_CACHE_NAME);
-          return networkResponse;
-        }).catch(function() {
-          return caches.match(event.request);
-        });
-      })
-    );
-  // Handle requests for event images.
-  } else if (requestURL.pathname.includes('/eventImages/')) { // ALL GOOD
-    event.respondWith(
-      caches.open(CACHE_NAME).then(function(cache) {
-        return cache.match(event.request).then(function(cacheResponse) {
-          return cacheResponse||fetch(event.request).then(function(networkResponse) {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          }).catch(function() {
-            return cache.match('eventImages/event-default.png');
-          });
-        });
-      })
-    );
-  } else if ( // ALL GOOD
-    CACHED_URLS.includes(requestURL.href) ||
-    CACHED_URLS.includes(requestURL.pathname)
-  ) {
-    event.respondWith(
-      caches.open(CACHE_NAME).then(function(cache) {
-        return cache.match(event.request).then(function(response) {
-          return response || fetch(event.request);
-        });
-      })
-    );
-  }
+  event.respondWith(
+    fetch(event.request).catch(function() {
+      return caches.match(event.request).then(function(response) {
+        if (response) {
+          return response;
+        } else if (event.request.headers.get('accept').includes('text/html')) {
+          return caches.match('first.html');
+        }
+      });
+    })
+  );
 });
+
 
 
 self.addEventListener('activate', function(event) {
