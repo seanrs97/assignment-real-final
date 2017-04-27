@@ -255,7 +255,7 @@ var newsAPIJSON = "https://newsapi.org/v1/articles?source=bbc-news&apiKey=a0a4a3
 var CACHED_URLS = [
 	
    // BASE DIRECTORY
-  /* BASE_PATH + 'events.json',
+   BASE_PATH + 'events.json',
    BASE_PATH + 'index.html',
    BASE_PATH + 'LICENCE.txt',
    BASE_PATH + 'location.html',
@@ -280,57 +280,39 @@ var CACHED_URLS = [
    BASE_PATH +'assets/css/normalize.css',
    
    //Assets fonts
-  */
-   BASE_PATH +'mystyles.css',
-   BASE_PATH +'styles.css',
-   BASE_PATH +'offline.html',
-   BASE_PATH +'images/favicon/android-icon-36x36.png',
-   BASE_PATH +'images/favicon/android-icon-48x48.png',
-   BASE_PATH +'images/favicon/android-icon-72x72.png',
-   BASE_PATH +'images/favicon/android-icon-96x96.png',
-   BASE_PATH +'images/favicon/android-icon-144x144.png',
-   BASE_PATH +'images/favicon/android-icon-192x192.png',
-   BASE_PATH +'images/favicon/favicon-16x16.png',
-   BASE_PATH +'images/favicon/favicon-32x32.png',
-   BASE_PATH +'images/favicon/favicon-96x96.png',
-   BASE_PATH +'images/favicon/ic_launcher-1x.png',
-   BASE_PATH +'images/favicon/ic_launcher-2x.png',
-   BASE_PATH +'images/favicon/ic_launcher-3x.png',
-   BASE_PATH +'images/favicon/ic_launcher-4x.png',
-   BASE_PATH +'images/favicon/ic_launcher-5x.png',
+   BASE_PATH +'assets/fonts/fontAwesome.otf',
+   BASE_PATH +'assets/fonts/fontawesome-webfont.eot',
+   BASE_PATH +'assets/fonts/fontawesome-webfont.svg',
+   BASE_PATH +'assets/fonts/fontawesome-webfont.ttf',
+   BASE_PATH +'assets/fonts/fontawesome-webfont.woff',
+   BASE_PATH +'assets/fonts/fontAwesome-webfont.woff2',
   
-   BASE_PATH +'images/favicon/manifest.json',
-   BASE_PATH +'images/activities-image.jpg',
-   BASE_PATH +'images/banner.jpg',
-   BASE_PATH +'images/clubs-image.jpg',
-   BASE_PATH +'images/main-image.jpg',
-   BASE_PATH +'images/party-image.jpg',
-   BASE_PATH +'images/pic01.jpg',
-   BASE_PATH +'images/pic02.jpg',
-   BASE_PATH +'images/pic03.jpg',
-   BASE_PATH +'images/study-image.jpg',
-   BASE_PATH +'images/universityImage-1x.png',
-   BASE_PATH +'images/universityImage-2x.png',
-   BASE_PATH +'images/universityImage-3x.png',
-   BASE_PATH +'assets/css/images/overlay.png',
-   BASE_PATH +'assets/css/images/shadow.png',
-   BASE_PATH +'assets/css/font-awesome.min.css',
-   BASE_PATH +'assets/css/ie8.css',
-   BASE_PATH +'assets/css/main.css',
-   BASE_PATH +'assets/css/normalize.css',
-   BASE_PATH +'assets/fonts/FontAwesome.otf',
+   //Assets js
+   BASE_PATH +'assets/ie/backgroundsize.min.htc',
+   BASE_PATH +'assets/ie/html5shiv.js',
+   BASE_PATH +'assets/ie/PIE.htc',
+   BASE_PATH +'assets/ie/respond.min.js',
+   BASE_PATH +'assets/js/gen_validatorv31.js',
+   BASE_PATH +'assets/js/jquery.dropotron.min.js',
    BASE_PATH +'assets/js/jquery.min.js',
    BASE_PATH +'assets/js/main.js',
+   BASE_PATH +'assets/js/material.js',
    BASE_PATH +'assets/js/modernizr.js',
+   BASE_PATH +'assets/js/skel.min.js',
+   BASE_PATH +'assets/js/skel-viewport.min.js',
+   BASE_PATH +'assets/js/util.js',
+   
+   //Assets Sass
+   BASE_PATH +'assets/sass/libs/_functions.scss',
+   BASE_PATH +'assets/sass/libs/_mixins.css',
+   BASE_PATH +'assets/sass/libs/_skel.scss',
+   BASE_PATH +'assets/sass/libs/_vars.scss',
    BASE_PATH +'assets/sass/ie8.scss',
    BASE_PATH +'assets/sass/main.scss',
-   BASE_PATH +'assets/browserconfig.xml',
-   BASE_PATH +'offline-map.js',
-   BASE_PATH +'assets/js/material.js',
-   BASE_PATH +'eventImages/event-default.png',
-   BASE_PATH +'offlinemap.jpg',
-   BASE_PATH +'events.json',
-   BASE_PATH +'scripts.js'
+   
+   //Assets
+   BASE_PATH +'assets/browserconfig.xml'
+   
 ];
 
 var googleMapsAPIJS = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDx4ApTFTqBYO6wNIJlBZ7DulIN46Zaq3g&callback=initMap';
@@ -372,6 +354,16 @@ self.addEventListener('fetch', function(event) {
       })
     );
  // Handle requests for Google Maps JavaScript API file
+  } else if (requestURL.href === googleMapsAPIJS) {
+    event.respondWith(
+      fetch(
+        googleMapsAPIJS+'&'+Date.now(),
+        { mode: 'no-cors', cache: 'no-store' }
+      ).catch(function() {
+        return caches.match('offline-map.js');
+      })
+    );
+	// Handle requests for events JSON file
   } else if (requestURL.pathname === BASE_PATH + 'events.json') {
     event.respondWith(
       caches.open(CACHE_NAME).then(function(cache) {
@@ -410,7 +402,25 @@ self.addEventListener('fetch', function(event) {
       })
     );
   // 
-  }  else if (
+  } else if (requestURL.href.includes('bbci.co.uk/news/')) {
+    event.respondWith(
+      caches.open(TEMP_IMAGE_CACHE_NAME).then(function(cache) {
+        return cache.match(event.request).then(function(cacheResponse) {
+          return cacheResponse||fetch(event.request, {mode: 'no-cors'}).then(function(networkResponse) {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          }).catch(function() {
+            return cache.match('eventImages/news-default.jpg');
+          });
+        });
+      })
+    );
+
+  
+  
+  
+  
+  } else if (
     CACHED_URLS.includes(requestURL.href) ||
     CACHED_URLS.includes(requestURL.pathname)
   ) {
