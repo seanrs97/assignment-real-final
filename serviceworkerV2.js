@@ -248,7 +248,7 @@ self.addEventListener('activate', function(event) {
 
 
 var TEMP_IMAGE_CACHE_NAME = 'temp-cache-v7';
-var BASE_PATH = '/assignment-real-final/';
+var BASE_PATH = 'assignment-real-final/';
 var CACHE_NAME = 'gih-cache-v6';
 var newsAPIJSON = "https://newsapi.org/v1/articles?source=bbc-news&apiKey=a0a4a38847b64cf1b96a92066e7933af";
 
@@ -323,7 +323,19 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
   var requestURL = new URL(event.request.url);
   // Handle requests for index.html
- if (requestURL.pathname === BASE_PATH + 'staffs-uni.html') { // ALL GOOD
+  if (requestURL.pathname === BASE_PATH + 'index.html') { // THIS
+    event.respondWith(
+      caches.open(CACHE_NAME).then(function(cache) {
+        return cache.match('index.html').then(function(cachedResponse) {
+          var fetchPromise = fetch('index.html').then(function(networkResponse) {
+            cache.put('index.html', networkResponse.clone());
+            return networkResponse;
+          });
+          return cachedResponse || fetchPromise;
+        });
+      })
+    );
+	} else if (requestURL.pathname === BASE_PATH + 'staffs-uni.html') { // THIS
     event.respondWith(
       caches.open(CACHE_NAME).then(function(cache) {
         return cache.match('staffs-uni.html').then(function(cachedResponse) {
