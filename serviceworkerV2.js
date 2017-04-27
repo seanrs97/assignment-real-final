@@ -395,24 +395,21 @@ self.addEventListener('fetch', function(event) {
         });
       })
     );
-  // 
-
-
-  
-  
-  
-  
-  } else if (
-    CACHED_URLS.includes(requestURL.href) ||
-    CACHED_URLS.includes(requestURL.pathname)
-  ) {
-    event.respondWith(
-      caches.open(CACHE_NAME).then(function(cache) {
-        return cache.match(event.request).then(function(response) {
-          return response || fetch(event.request);
-        });
-      })
-    );
   }
+});
+
+
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          if (cacheName.startsWith('gih-cache') && CACHE_NAME !== cacheName) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
 });
 
