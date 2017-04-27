@@ -383,7 +383,7 @@ self.addEventListener('fetch', function(event) {
       })
     );
   // Handle requests for event images.
-  } else if (requestURL.pathname.includes('/eventsImages/')) {
+  } else if (requestURL.pathname.includes('/eventImages/')) {
     event.respondWith(
       caches.open(CACHE_NAME).then(function(cache) {
         return cache.match(event.request).then(function(cacheResponse) {
