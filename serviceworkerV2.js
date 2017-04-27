@@ -257,61 +257,7 @@ var CACHED_URLS = [
    // BASE DIRECTORY
    BASE_PATH + 'events.json',
    BASE_PATH + 'index.html',
-   BASE_PATH + 'LICENCE.txt',
-   BASE_PATH + 'location.html',
-   BASE_PATH + 'min-style.css',
-   BASE_PATH + 'mystyles.css',
-   BASE_PATH + 'offline.html',
-   BASE_PATH +'offlinemap.jpg',
-   BASE_PATH +'offline-map.js',
-   BASE_PATH +'README.md',
-   BASE_PATH +'README.txt',
-   BASE_PATH +'scripts.js',
-   BASE_PATH +'scripts_v2.js',
-   BASE_PATH +'sign-up.html',
-   BASE_PATH +'styles.css',
-   
-   //Assets CSS
-   
-   BASE_PATH +'assets/css/images/overlay.png',
-   BASE_PATH +'assets/css/font-awesome.min.css',
-   BASE_PATH +'assets/css/ie8.css',
-   BASE_PATH +'assets/css/main.css',
-   BASE_PATH +'assets/css/normalize.css',
-   
-   //Assets fonts
-   BASE_PATH +'assets/fonts/fontAwesome.otf',
-   BASE_PATH +'assets/fonts/fontawesome-webfont.eot',
-   BASE_PATH +'assets/fonts/fontawesome-webfont.svg',
-   BASE_PATH +'assets/fonts/fontawesome-webfont.ttf',
-   BASE_PATH +'assets/fonts/fontawesome-webfont.woff',
-   BASE_PATH +'assets/fonts/fontAwesome-webfont.woff2',
-  
-   //Assets js
-   BASE_PATH +'assets/ie/backgroundsize.min.htc',
-   BASE_PATH +'assets/ie/html5shiv.js',
-   BASE_PATH +'assets/ie/PIE.htc',
-   BASE_PATH +'assets/ie/respond.min.js',
-   BASE_PATH +'assets/js/gen_validatorv31.js',
-   BASE_PATH +'assets/js/jquery.dropotron.min.js',
-   BASE_PATH +'assets/js/jquery.min.js',
-   BASE_PATH +'assets/js/main.js',
-   BASE_PATH +'assets/js/material.js',
-   BASE_PATH +'assets/js/modernizr.js',
-   BASE_PATH +'assets/js/skel.min.js',
-   BASE_PATH +'assets/js/skel-viewport.min.js',
-   BASE_PATH +'assets/js/util.js',
-   
-   //Assets Sass
-   BASE_PATH +'assets/sass/libs/_functions.scss',
-   BASE_PATH +'assets/sass/libs/_mixins.css',
-   BASE_PATH +'assets/sass/libs/_skel.scss',
-   BASE_PATH +'assets/sass/libs/_vars.scss',
-   BASE_PATH +'assets/sass/ie8.scss',
-   BASE_PATH +'assets/sass/main.scss',
-   
-   //Assets
-   BASE_PATH +'assets/browserconfig.xml'
+
    
 ];
 
