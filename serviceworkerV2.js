@@ -250,18 +250,19 @@ self.addEventListener('activate', function(event) {
 var TEMP_IMAGE_CACHE_NAME = 'temp-cache-v7';
 var BASE_PATH = '/assignment-real-final/';
 var CACHE_NAME = 'gih-cache-v6';
-var newsAPIJSON = "https://newsapi.org/v1/articles?source=bbc-news&apiKey=a0a4a38847b64cf1b96a92066e7933af";
+//var newsAPIJSON = "https://newsapi.org/v1/articles?source=bbc-news&apiKey=a0a4a38847b64cf1b96a92066e7933af";
 
 var CACHED_URLS = [
 	
    // BASE DIRECTORY
    BASE_PATH + 'events.json',
    BASE_PATH + 'index.html',
+   BASE_PATH + 'staffs-uni.html'
 
    
 ];
 
-var googleMapsAPIJS = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDx4ApTFTqBYO6wNIJlBZ7DulIN46Zaq3g&callback=initMap';
+//var googleMapsAPIJS = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDx4ApTFTqBYO6wNIJlBZ7DulIN46Zaq3g&callback=initMap';
 
 self.addEventListener('install', function(event) {
   // Cache everything in CACHED_URLS. Installation fails if anything fails to cache
