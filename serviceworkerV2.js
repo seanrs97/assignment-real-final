@@ -282,8 +282,8 @@ self.addEventListener('activate', function(event) {
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
-        cacheNames.map(function(cacheName) {
-          if (cacheName.startsWith('gih-cache') && CACHE_NAME !== cacheName) {
+       cacheNames.map(function(cacheName) {
+          if (CACHE_NAME !== cacheName && cacheName.startsWith('gih-cache')) {
             return caches.delete(cacheName);
           }
         })
