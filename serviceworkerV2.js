@@ -285,11 +285,7 @@ var CACHED_URLS = [
    'images/universityImage-1x.png',
    'images/universityImage-2x.png',
    'images/universityImage-3x.png',
-   'assets/css/images/overlay.png',
-   'assets/css/images/shadow.png',
-   'assets/css/font-awesome.min.css',
-   'assets/css/ie8.css',
-   'assets/css/main.css',
+ 
    'assets/css/normalize.css',
    'assets/fonts/FontAwesome.otf',
    'assets/js/gen_validatorv31.js',
