@@ -335,19 +335,16 @@ self.addEventListener('fetch', function(event) {
         });
       })
     );
-	} else if (requestURL.pathname === BASE_PATH + 'staffs-uni.html') {
+	} else if (requestURL.href === googleMapsAPIJS) { // ALL GOOD
     event.respondWith(
-      caches.open(CACHE_NAME).then(function(cache) {
-        return cache.match('staffs-uni.html').then(function(cachedResponse) {
-          var fetchPromise = fetch('staffs-uni.html').then(function(networkResponse) {
-            cache.put('staffs-uni.html', networkResponse.clone());
-            return networkResponse;
-          });
-          return cachedResponse || fetchPromise;
-        });
+      fetch(
+        googleMapsAPIJS+'&'+Date.now(),
+        { mode: 'no-cors', cache: 'no-store' }
+      ).catch(function() {
+        return caches.match('offline-map.js');
       })
     );
- // Handle requests for Google Maps JavaScript API file
+	// Handle requests for events JSON file
   } else if (requestURL.pathname === BASE_PATH + 'events.json') { // ALL GOOD
     event.respondWith(
       caches.open(CACHE_NAME).then(function(cache) {
