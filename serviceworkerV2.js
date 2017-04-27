@@ -245,7 +245,8 @@ self.addEventListener('activate', function(event) {
   );
 });
 */
-var CACHE_NAME = 'gih-cache-v5';
+var CACHE_NAME = 'gih-cache-v2';
+
 var CACHED_URLS = [
   // Our HTML
   'index.html',
