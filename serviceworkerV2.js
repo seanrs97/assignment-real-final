@@ -348,16 +348,17 @@ self.addEventListener('fetch', function(event) {
       })
     );
  // Handle requests for Google Maps JavaScript API file
-  } else if (requestURL.href === googleMapsAPIJS) {
+  } else if (requestURL.pathname === BASE_PATH + 'events.json') { // ALL GOOD
     event.respondWith(
-      fetch(
-        googleMapsAPIJS+'&'+Date.now(),
-        { mode: 'no-cors', cache: 'no-store' }
-      ).catch(function() {
-        return caches.match('offline-map.js');
+      caches.open(CACHE_NAME).then(function(cache) {
+        return fetch(event.request).then(function(networkResponse) {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        }).catch(function() {
+          return caches.match(event.request);
+        });
       })
     );
-	// Handle requests for events JSON file
   } else if (requestURL.href === newsAPIJSON) { // ALL GOOD
     event.respondWith(
       caches.open(CACHE_NAME).then(function(cache) {
