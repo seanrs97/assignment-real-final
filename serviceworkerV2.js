@@ -250,37 +250,7 @@ self.addEventListener('activate', function(event) {
 
 var CACHE_NAME = 'gih-cache-v5';
 var CACHED_URLS = [
-   'index.html',
-   'staffs-uni.html',
-   'sign-up.html',
-  
-   'mystyles.css',
-   'styles.css',
-   'offline.html',
-   'images/favicon/android-icon-36x36.png',
-   'images/favicon/android-icon-48x48.png',
-   'images/favicon/android-icon-72x72.png',
-   'images/favicon/android-icon-96x96.png',
-   'images/favicon/android-icon-144x144.png',
-   'images/favicon/android-icon-192x192.png',
-   'images/favicon/favicon-16x16.png',
-   'images/favicon/favicon-32x32.png',
-   'images/favicon/favicon-96x96.png',
-   'images/favicon/ic_launcher-1x.png',
-   'images/favicon/ic_launcher-2x.png',
-   'images/favicon/ic_launcher-3x.png',
-   'images/favicon/ic_launcher-4x.png',
-   'images/favicon/ic_launcher-5x.png',
-  
-   'images/favicon/manifest.json',
-  
-   'assets/browserconfig.xml',
-   'assets/js/offline-map.js',
-   'assets/js/material.js',
-   'eventImages/event-default.png',
-   'offlinemap.jpg',
-   'events.json',
-   'scripts.js'
+
 ];
 
 self.addEventListener('install', function(event) {
