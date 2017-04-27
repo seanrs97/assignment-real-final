@@ -410,13 +410,7 @@ self.addEventListener('fetch', function(event) {
       })
     );
   // 
-  } 
-
-  
-  
-  
-  
-  } else if (
+  }  else if (
     CACHED_URLS.includes(requestURL.href) ||
     CACHED_URLS.includes(requestURL.pathname)
   ) {
