@@ -253,10 +253,34 @@ var CACHE_NAME = 'gih-cache-v6';
 var newsAPIJSON = "https://newsapi.org/v1/articles?source=bbc-news&apiKey=a0a4a38847b64cf1b96a92066e7933af";
 
 var CACHED_URLS = [
+	
+   // BASE DIRECTORY
+  /* BASE_PATH + 'events.json',
    BASE_PATH + 'index.html',
-   BASE_PATH +'staffs-uni.html',
+   BASE_PATH + 'LICENCE.txt',
+   BASE_PATH + 'location.html',
+   BASE_PATH + 'min-style.css',
+   BASE_PATH + 'mystyles.css',
+   BASE_PATH + 'offline.html',
+   BASE_PATH +'offlinemap.jpg',
+   BASE_PATH +'offline-map.js',
+   BASE_PATH +'README.md',
+   BASE_PATH +'README.txt',
+   BASE_PATH +'scripts.js',
+   BASE_PATH +'scripts_v2.js',
    BASE_PATH +'sign-up.html',
-  
+   BASE_PATH +'styles.css',
+   
+   //Assets CSS
+   
+   BASE_PATH +'assets/css/images/overlay.png',
+   BASE_PATH +'assets/css/font-awesome.min.css',
+   BASE_PATH +'assets/css/ie8.css',
+   BASE_PATH +'assets/css/main.css',
+   BASE_PATH +'assets/css/normalize.css',
+   
+   //Assets fonts
+  */
    BASE_PATH +'mystyles.css',
    BASE_PATH +'styles.css',
    BASE_PATH +'offline.html',
@@ -321,19 +345,90 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    fetch(event.request).catch(function() {
-      return caches.match(event.request).then(function(response) {
-        if (response) {
-          return response;
-        } else if (event.request.headers.get('accept').includes('text/html')) {
-          return caches.match('first.html');
-        }
-      });
-    })
-  );
-});
+  var requestURL = new URL(event.request.url);
+  // Handle requests for index.html
+  if (requestURL.pathname === BASE_PATH + 'index.html') {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(function(cache) {
+        return cache.match('index.html').then(function(cachedResponse) {
+          var fetchPromise = fetch('index.html').then(function(networkResponse) {
+            cache.put('index.html', networkResponse.clone());
+            return networkResponse;
+          });
+          return cachedResponse || fetchPromise;
+        });
+      })
+    );
+	} else if (requestURL.pathname === BASE_PATH + 'staffs-uni.html') {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(function(cache) {
+        return cache.match('staffs-uni.html').then(function(cachedResponse) {
+          var fetchPromise = fetch('staffs-uni.html').then(function(networkResponse) {
+            cache.put('staffs-uni.html', networkResponse.clone());
+            return networkResponse;
+          });
+          return cachedResponse || fetchPromise;
+        });
+      })
+    );
+ // Handle requests for Google Maps JavaScript API file
+  } else if (requestURL.pathname === BASE_PATH + 'events.json') {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(function(cache) {
+        return fetch(event.request).then(function(networkResponse) {
+          cache.put(event.request, networkResponse.clone());
+          return networkResponse;
+        }).catch(function() {
+          return caches.match(event.request);
+        });
+      })
+    );
+  } else if (requestURL.href === newsAPIJSON) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(function(cache) {
+        return fetch(event.request).then(function(networkResponse) {
+          cache.put(event.request, networkResponse.clone());
+          caches.delete(TEMP_IMAGE_CACHE_NAME);
+          return networkResponse;
+        }).catch(function() {
+          return caches.match(event.request);
+        });
+      })
+    );
+  // Handle requests for event images.
+  } else if (requestURL.pathname.includes('/eventImages/')) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(function(cache) {
+        return cache.match(event.request).then(function(cacheResponse) {
+          return cacheResponse||fetch(event.request).then(function(networkResponse) {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          }).catch(function() {
+            return cache.match('eventImages/event-default.png');
+          });
+        });
+      })
+    );
+  // 
+  } 
 
+  
+  
+  
+  
+  } else if (
+    CACHED_URLS.includes(requestURL.href) ||
+    CACHED_URLS.includes(requestURL.pathname)
+  ) {
+    event.respondWith(
+      caches.open(CACHE_NAME).then(function(cache) {
+        return cache.match(event.request).then(function(response) {
+          return response || fetch(event.request);
+        });
+      })
+    );
+  }
+});
 
 
 self.addEventListener('activate', function(event) {
@@ -349,4 +444,7 @@ self.addEventListener('activate', function(event) {
     })
   );
 });
+
+
+
 
