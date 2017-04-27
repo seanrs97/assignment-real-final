@@ -358,18 +358,20 @@ self.addEventListener('fetch', function(event) {
       })
     );
 	// Handle requests for events JSON file
-  } else if (requestURL.pathname === BASE_PATH + 'events.json') {
+  } else if (requestURL.href === newsAPIJSON) { // ALL GOOD
     event.respondWith(
       caches.open(CACHE_NAME).then(function(cache) {
         return fetch(event.request).then(function(networkResponse) {
           cache.put(event.request, networkResponse.clone());
+          caches.delete(TEMP_IMAGE_CACHE_NAME);
           return networkResponse;
         }).catch(function() {
           return caches.match(event.request);
         });
       })
     );
-  }  else if (requestURL.pathname.includes('/eventImages/')) { // ALL GOOD
+  // Handle requests for event images.
+  } else if (requestURL.pathname.includes('/eventImages/')) { // ALL GOOD
     event.respondWith(
       caches.open(CACHE_NAME).then(function(cache) {
         return cache.match(event.request).then(function(cacheResponse) {
