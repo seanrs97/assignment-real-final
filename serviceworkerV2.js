@@ -248,7 +248,7 @@ self.addEventListener('activate', function(event) {
 var CACHE_NAME = 'gih-cache-v4';
 var CACHED_URLS = [
   // Our HTML
-    'index.html',
+   'index.html',
    'staffs-uni.html',
    'sign-up.html',
   
@@ -270,39 +270,7 @@ var CACHED_URLS = [
    'images/favicon/ic_launcher-4x.png',
    'images/favicon/ic_launcher-5x.png',
   
-   'images/favicon/manifest.json',
-   'images/activities-image.jpg',
-   'images/banner.jpg',
-   'images/clubs-image.jpg',
-   'images/main-image.jpg',
-   'images/party-image.jpg',
-   'images/pic01.jpg',
-   'images/pic02.jpg',
-   'images/pic03.jpg',
-   'images/study-image.jpg',
-   'images/universityImage-1x.png',
-   'images/universityImage-2x.png',
-   'images/universityImage-3x.png',
-   'assets/css/images/overlay.png',
-   'assets/css/images/shadow.png',
-   'assets/css/font-awesome.min.css',
-   'assets/css/ie8.css',
-   'assets/css/main.css',
-   'assets/css/normalize.css',
-   'assets/fonts/FontAwesome.otf',
-   'assets/js/gen_validatorv31.js',
-   'assets/js/jquery.min.js',
-   'assets/js/main.js',
-   'assets/js/modernizr.js',
-   'assets/sass/ie8.scss',
-   'assets/sass/main.scss',
-   'assets/browserconfig.xml',
-   'assets/js/offline-map.js',
-   'assets/js/material.js',
-   'eventImages/event-default.png',
-   'offlinemap.jpg',
-   'events.json',
-   'scripts.js'
+   
 ];
 
 self.addEventListener('install', function(event) {
