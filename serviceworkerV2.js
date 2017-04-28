@@ -246,7 +246,9 @@ self.addEventListener('activate', function(event) {
 });
 */
 var BASE_PATH = "/assignment-real-final/";
-var CACHE_NAME = 'gih-cache-v4';
+var TEMP_IMAGE_CACHE_NAME = 'temp-cache-v1';
+var CACHE_NAME = 'gih-cache-v7';
+var newsAPIJSON = "https://newsapi.org/v1/articles?source=bbc-news&apiKey=c5b2ba3cfb4c4717852bf328348da961";
 var CACHED_URLS = [
   // Our HTML
    BASE_PATH +'index.html',
