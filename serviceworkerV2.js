@@ -431,7 +431,7 @@ self.addEventListener('fetch', function(event) {
                         cache.put(event.request, networkResponse.clone());
                         return networkResponse;
                     }).catch(function() {
-                        return cache.match('appimages/news-default.jpg');
+                        return cache.match('eventImages/news-default.jpg');
                     });
                 });
             })
