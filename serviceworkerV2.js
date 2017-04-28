@@ -308,3 +308,14 @@ var CACHED_URLS = [
    BASE_PATH +'scripts.js'
 ];
 
+var googleMapsAPIJS = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAlVh89VvQ5fR8PCPFak-YoYGX_eg1DBSc&callback=initMap';
+
+self.addEventListener('install', function(event) {
+    // Cache everything in CACHED_URLS. Installation fails if anything fails to cache
+    event.waitUntil(
+        caches.open(CACHE_NAME).then(function(cache) {
+            return cache.addAll(CACHED_URLS);
+        })
+    );
+});
+
