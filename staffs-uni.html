@@ -177,16 +177,7 @@
 				src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMA8ic4_Gyh0D7XUW9gBtrCcEwoBbBJ8E&libraries=places&callback=initMap">
 			</script>
 			<script type = "text/javascript" src = "assets/js/modernizr.js"></script>
-			<script>
-		    if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.register('serviceworkerV2.js').then(function(registration) {
-
-				console.log('Service worker registered successfully');
-			  }).catch(function(err) {
-				console.log('Service worker registration failed: ', err);
-			  });
-			}
-			</script>
+			<script src = "scripts.js"/>
 
 	</body>
 </html>
