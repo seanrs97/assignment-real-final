@@ -248,7 +248,7 @@ self.addEventListener('activate', function(event) {
 var CACHE_NAME = 'gih-cache-v4';
 var CACHED_URLS = [
   // Our HTML
-  'offline.html',
+  'index.html',
   'mystyles.css'
   // Stylesheets and fonts
   // JavaScript
@@ -271,7 +271,7 @@ self.addEventListener('fetch', function(event) {
         if (response) {
           return response;
         } else if (event.request.headers.get('accept').includes('text/html')) {
-          return caches.match('offline.html');
+          return caches.match('index.html');
         }
       });
     })
