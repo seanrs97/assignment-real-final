@@ -322,7 +322,22 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
     var requestURL = new URL(event.request.url);
     // Handle requests for index.html
-   if (requestURL.href === googleMapsAPIJS) {
+    if (requestURL.pathname === BASE_PATH + 'index.html') {
+        event.respondWith(
+            caches.open(CACHE_NAME).then(function(cache) {
+                return cache.match('index.html').then(function(cachedResponse) {
+                    var fetchPromise = fetch('index.html').then(function(networkResponse) {
+                        cache.put('index.html', networkResponse.clone());
+                        return networkResponse;
+                    });
+                    return cachedResponse || fetchPromise;
+                });
+            })
+        );
+    }
+
+        // Handle requests for Google Maps JavaScript API file
+    } else if (requestURL.href === googleMapsAPIJS) {
         event.respondWith(
             fetch(
                 googleMapsAPIJS+'&'+Date.now(),
