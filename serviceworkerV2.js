@@ -246,6 +246,7 @@ self.addEventListener('activate', function(event) {
 });
 */
 var CACHE_NAME = 'gih-cache-v4';
+var BASE_PATH = "/assignment-real-final/";
 var CACHED_URLS = [
   BASE_PATH + 'index.html',
   BASE_PATH + 'staffs-uni.html',
