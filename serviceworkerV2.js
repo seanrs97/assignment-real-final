@@ -322,7 +322,7 @@ self.addEventListener('install', function(event) {
 self.addEventListener('fetch', function(event) {
     var requestURL = new URL(event.request.url);
     // Handle requests for index.html
-    if (requestURL.pathname === BASE_PATH + 'sign-up.html') { // THIS FAM
+    if (requestURL.pathname === BASE_PATH + 'sign-up.html') { // T
         event.respondWith(
             caches.open(CACHE_NAME).then(function(cache) {
                 return cache.match('sign-up.html').then(function(cachedResponse) {
